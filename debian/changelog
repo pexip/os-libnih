@@ -1,3 +1,9 @@
+libnih (1.0.3-4ubuntu9.1pexip1) pexip; urgency=low
+
+  * Prepare Pexip packaging
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 24 Dec 2013 21:44:41 +0000
+
 libnih (1.0.3-4ubuntu9.1) precise-proposed; urgency=low
 
   * Addition of debian/libnih-dbus1.postinst and
