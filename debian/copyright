@@ -1,4 +1,4 @@
-This is the Ubuntu package of libnih, the NIH Utility Library.
+This is the Debian package of libnih, the NIH Utility Library.
 
 Copyright © 2009 Canonical Ltd.
 Copyright © 2009 Scott James Remnant <scott@netsplit.com>
@@ -14,5 +14,5 @@ WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 General Public License for more details.
 
-On Ubuntu systems, the complete text of the GNU General Public License
-can be found in ‘/usr/share/common-licenses/GPL’.
+On Debian systems, the complete text of the GNU General Public License
+can be found in ‘/usr/share/common-licenses/GPL-2’.

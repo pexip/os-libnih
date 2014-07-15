@@ -1,5 +1,4 @@
-lib/*/libnih-dbus.a
-lib/*/libnih-dbus.so
+usr/lib/libnih-dbus.a
 usr/include/libnih-dbus.h
-usr/include/nih-dbus
-usr/lib/*/pkgconfig/libnih-dbus.pc
+usr/include/nih-dbus/
+usr/lib/pkgconfig/libnih-dbus.pc
