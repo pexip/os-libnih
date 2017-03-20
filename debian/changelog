@@ -1,171 +1,92 @@
-libnih (1.0.3-4ubuntu9.1pexip1) pexip; urgency=low
+libnih (1.0.3-4.3pexip1) pexip; urgency=low
 
-  * Prepare Pexip packaging
+  * Migrate to Jessie
 
- -- John-Mark Bell <jmb@pexip.com>  Tue, 24 Dec 2013 21:44:41 +0000
+ -- John-Mark Bell <jmb@pexip.com>  Mon, 20 Mar 2017 21:03:11 +0000
 
-libnih (1.0.3-4ubuntu9.1) precise-proposed; urgency=low
+libnih (1.0.3-4.3) unstable; urgency=medium
 
-  * Addition of debian/libnih-dbus1.postinst and
-    debian/libnih1.postinst to force Upstart re-exec on shutdown
-    to avoid unmounting disks uncleanly (LP: #740390, LP: #1062202).
+  * Non-maintainer upload.
+  * Run dh-autoreconf to update config.{sub,guess} and
+    {libtool,aclocal}.m4, necessary for some new ports.  Thanks Mauricio
+    Faria de Oliveira.  (Closes: #689622)
 
- -- James Hunt <james.hunt@ubuntu.com>  Fri, 05 Oct 2012 14:14:10 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 15 Jul 2014 20:06:36 +0100
 
-libnih (1.0.3-4ubuntu9) precise; urgency=low
+libnih (1.0.3-4.2) unstable; urgency=low
 
-  * Mark the nih-dbus-tool package Multi-Arch: foreign so it can be used as
-    a build-dependency of upstart when cross-building.
+  * Non-maintainer upload.
+  * Cherry-pick from upstream: update dbus code generator to allow for empty
+    lists for type 'as'.  Closes: #728036.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Wed, 15 Feb 2012 22:57:50 -0800
+ -- Steve Langasek <vorlon@debian.org>  Mon, 11 Nov 2013 07:37:27 +0000
 
-libnih (1.0.3-4ubuntu8) precise; urgency=low
+libnih (1.0.3-4.1) unstable; urgency=low
 
-  * libnih1 needs a versioned Pre-Depend on libc6 instead of just a Depend,
-    because libc6 itself uses runlevel from the upstart package in its
-    preinst, which in turn uses libnih1, which needs to be loadable (i.e.,
-    its symbol references resolve).  We therefore need to ensure that
-    libnih1's dependencies are always unpacked before libnih1 itself is
-    unpacked.  While having something further up the stack (such as upstart,
-    or something on top of upstart) being marked Essential: yes and with the
-    necessary pre-depends would let apt handle this for us with its
-    "immediate configuration" support, but for various reasons we don't want
-    to make upstart essential.  LP: #508083.
+  * Non-maintainer Upload.
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 10 Feb 2012 12:13:25 -0800
+  [ Petr Lautrbach <plautrba@redhat.com>, Dmitrijs Ledkovs ]
+  * Fallback to lstat, if dirent.d_type is not available (not portable)
+    Closes: #695604
 
-libnih (1.0.3-4ubuntu7) precise; urgency=low
+ -- Michael Stapelberg <stapelberg@debian.org>  Mon, 31 Dec 2012 18:32:21 +0100
 
-  * Relax dependency on libc6.
+libnih (1.0.3-4) unstable; urgency=low
 
- -- Matthias Klose <doko@ubuntu.com>  Wed, 08 Feb 2012 23:43:21 +0100
+  * Rebuild for new libc to update versioned dependency; this comes from
+    the __abort_msg dependency, dpkg-shlibs needs overriding since this is
+    actually a weak link, but this rebuild fixes things for now.
+    Closes: #625257.
 
-libnih (1.0.3-4ubuntu6) precise; urgency=low
+ -- Scott James Remnant <scott@netsplit.com>  Mon, 02 May 2011 15:08:33 -0700
 
-  * Rebuild with libc6-dev (>= 2.15~).
+libnih (1.0.3-3) unstable; urgency=low
 
- -- Matthias Klose <doko@ubuntu.com>  Wed, 08 Feb 2012 21:48:57 +0100
+  * New maintainer.  Closes: #624442.
 
-libnih (1.0.3-4ubuntu5) precise; urgency=low
+ -- Scott James Remnant <scott@netsplit.com>  Thu, 28 Apr 2011 14:26:05 -0700
 
-  * Mark libnih-dev and libnih-dbus-dev Multi-Arch: same as well.
+libnih (1.0.3-2) unstable; urgency=low
 
- -- Steve Langasek <steve.langasek@ubuntu.com>  Sun, 06 Nov 2011 14:45:07 -0800
+  * Bump build dependency on libdbus-1-dev and dbus to (>= 1.4) for Unix file
+    descriptor passing support.
 
-libnih (1.0.3-4ubuntu4) precise; urgency=low
+ -- Michael Biebl <biebl@debian.org>  Thu, 10 Feb 2011 20:25:18 +0100
 
-  * Make libnih1 and libnih-dbus1 installable using multi-arch.
+libnih (1.0.3-1) unstable; urgency=low
 
- -- James Hunt <james.hunt@ubuntu.com>  Tue, 01 Nov 2011 14:25:09 -0400
+  * New upstream release.
+  * Bump debhelper compatibility level to 8 and update build dependency
+    accordingly.
 
-libnih (1.0.3-4ubuntu3) precise; urgency=low
+ -- Michael Biebl <biebl@debian.org>  Mon, 07 Feb 2011 22:19:13 +0100
 
-  * Build to install with eglibc-2.15.
+libnih (1.0.2-2) unstable; urgency=low
 
- -- Matthias Klose <doko@ubuntu.com>  Fri, 14 Oct 2011 14:05:03 +0200
+  * Install library development files to /usr/lib and not /lib.
+  * Remove libtool *.la files as there are no reverse dependencies referencing
+    them.
+  * Bump Standards-Version to 3.9.1. No further changes.
 
-libnih (1.0.3-4ubuntu2) oneiric; urgency=low
+ -- Michael Biebl <biebl@debian.org>  Sun, 02 Jan 2011 21:09:40 +0100
 
-  * Use dpkg-buildflags to get the build flags.
-  * Build with the default build flags, don't hard-code -Os. LP: #791315.
+libnih (1.0.2-1) unstable; urgency=low
 
- -- Matthias Klose <doko@ubuntu.com>  Wed, 15 Jun 2011 16:45:42 +0200
+  * Initial upload to Debian. Closes: #585071
+  * Based on the Ubuntu package for Lucid done by Scott James Remnant with the
+    following changes:
+    - Switch packages to priority optional.
+    - Use binary:Version instead of Source-Version.
+    - Bump Standards-Version to 3.8.4.
+    - Add Homepage and Vcs-* fields.
+    - Don't symlink /usr/share/doc directories.
+    - Refer to versioned /usr/share/common-licenses/GPL-2 file in
+      debian/copyright.
+    - List all symbols explicitly instead of using a wildcard and add symbols
+      introduced in 1.0.1.
+    - Use the symbols files to create the correct version info instead of
+      specifying it manually via shlibs.
+    - Switch to source format 3.0 (quilt).
+    - Add watch file to track new upstream releases.
 
-libnih (1.0.3-4ubuntu1) oneiric; urgency=low
-
-  * Merge from debian unstable. Retained Ubuntu Build-Depends and Priority.
-
- -- James Hunt <james.hunt@ubuntu.com>  Mon, 23 May 2011 19:28:19 +0100
-
-libnih (1.0.3-1ubuntu1) natty; urgency=low
-
-  * Rebuild with libc6-dev (>= 2.13~).
-
- -- Matthias Klose <doko@ubuntu.com>  Fri, 18 Feb 2011 12:09:29 +0100
-
-libnih (1.0.3-1) natty; urgency=low
-
-  * New upstream release:
-    - Added support for passing file descriptors over D-Bus to nih-dbus-tool
-
- -- Scott James Remnant <scott@ubuntu.com>  Thu, 23 Dec 2010 22:28:24 +0000
-
-libnih (1.0.2-2) natty; urgency=low
-
-  * Revert the previous upload.  It is never acceptable to simply disable
-    tests, especially when it turns out that the test that was disabled
-    was failing because there was a serious bug that could cause kernel
-    panics for people on boot.
-
-    Test suites are here for a reason.
-
-  * Bumped libdbus Build-Dependency to the version with the bug fix that
-    caused the test suite to fail.
-
- -- Scott James Remnant <scott@ubuntu.com>  Wed, 08 Dec 2010 19:40:15 +0000
-
-libnih (1.0.2-1ubuntu3) natty; urgency=low
-
-  * Disable some tests on ppc64 to build an initial package.
-
- -- Matthias Klose <doko@ubuntu.com>  Thu, 18 Nov 2010 10:59:38 +0100
-
-libnih (1.0.2-1ubuntu2) maverick; urgency=low
-
-  * Re-add -fPIE to the testsuite on armel, removing all armel-specific tests;
-    current gcc-4.4 don't seem affected by the ICE anymore (see LP #398403).
-
- -- Loïc Minier <loic.minier@linaro.org>  Mon, 23 Aug 2010 10:25:31 +0200
-
-libnih (1.0.2-1ubuntu1) maverick; urgency=low
-
-  * Rebuild with libc6-dev (>= 2.12~), after checking that
-    __abort_msg is available with the same signature in eglibc 2.12.
-  * Don't build the testsuite with -fPIE on armel; LP: #398403.
-
- -- Matthias Klose <doko@ubuntu.com>  Sun, 30 May 2010 02:54:56 +0200
-
-libnih (1.0.2-1) maverick; urgency=low
-
-  * New upstream release:
-    - Rename AC_COPYRIGHT to NIH_COPYRIGHT to avoid conflict with other
-      packages.
-    - Add serial to libnih.m4
-    - Add NIH_WITH_LOCAL_LIBNIH macro.
-
-  * Fix use of ${Source-Version} to be ${binary:Version}
-  * Add debian/source/format with "1.0" to be future compatible.
-  * Bump standards version.
-
- -- Scott James Remnant <scott@ubuntu.com>  Tue, 27 Apr 2010 10:49:55 -0700
-
-libnih (1.0.1-1) lucid; urgency=low
-
-  * New upstream release:
-    - Add missing __nih_* symbols to linker version script so that we
-      can link Upstart's test suite.
-    - Glibc __abort_msg symbol now only linked as a weak symbol.
-
- -- Scott James Remnant <scott@ubuntu.com>  Thu, 04 Feb 2010 14:53:26 -0800
-
-libnih (1.0.0-2build1) lucid; urgency=low
-
-  * Rebuild to pick up relaxed dependency on libc6, after checking that
-    __abort_msg is available with the same signature in eglibc 2.11.
-    LP: #508702.
-
- -- Matthias Klose <doko@ubuntu.com>  Mon, 18 Jan 2010 16:09:13 +0100
-
-libnih (1.0.0-2) lucid; urgency=low
-
-  * debian/control: Add build-dependency on dbus so the test suite can
-    pass on the buildds.
-
- -- Scott James Remnant <scott@ubuntu.com>  Sat, 28 Nov 2009 23:28:27 +0000
-
-libnih (1.0.0-1) lucid; urgency=low
-
-  * First upstream release.  Previously this code was included in the
-    upstart, mountall and ureadahead source packages.
-
- -- Scott James Remnant <scott@ubuntu.com>  Sat, 28 Nov 2009 21:14:00 +0000
+ -- Michael Biebl <biebl@debian.org>  Sun, 13 Jun 2010 23:36:52 +0200
