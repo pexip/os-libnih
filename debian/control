@@ -12,7 +12,7 @@ XS-Pexip-Upstream: http://ftp.debian.org/debian/ jessie
 
 Package: libnih1
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends} ${shlibs:Depends}, ${misc:Depends}
 Description: NIH Utility Library
  libnih is a light-weight "standard library" of C functions to ease the
  development of other libraries and applications, especially those
@@ -21,6 +21,7 @@ Description: NIH Utility Library
  This package contains the shared library.
 
 Package: libnih-dev
+Priority: optional
 Section: libdevel
 Architecture: any
 Depends: libnih1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
@@ -34,6 +35,7 @@ Description: NIH Utility Library (development files)
 
 Package: libnih-dbus1
 Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
 Depends: libnih1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Description: NIH D-Bus Bindings Library
  libnih-dbus is a D-Bus bindings library that integrates with the main
@@ -42,6 +44,7 @@ Description: NIH D-Bus Bindings Library
  This package contains the shared library.
 
 Package: libnih-dbus-dev
+Priority: optional
 Section: libdevel
 Architecture: any
 Depends: libnih-dbus1 (= ${binary:Version}), libnih-dev (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
@@ -54,6 +57,7 @@ Description: NIH D-Bus Bindings Library (development files)
  needed for developing software using libnih-dbus.
 
 Package: nih-dbus-tool
+Priority: optional
 Section: devel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
