@@ -1,6 +1,10 @@
 libnih (1.0.3-4.3pexip1) pexip; urgency=low
 
   * Migrate to Jessie
+  * Retain the following changes from Ubuntu:
+    - debian/control: libnih is required; set Pre-Depends
+    - debian/{libnih1.postinst,libnih-dbus1.postinst}:
+      Touch flag to make upstart restart
 
  -- John-Mark Bell <jmb@pexip.com>  Mon, 20 Mar 2017 21:03:11 +0000
 
